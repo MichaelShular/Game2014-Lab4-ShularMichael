@@ -270,6 +270,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 40
   decay: 0.1
+  bounds:
+    min: -1.9
+    max: 1.9
 --- !u!1 &506318056
 GameObject:
   m_ObjectHideFlags: 0
