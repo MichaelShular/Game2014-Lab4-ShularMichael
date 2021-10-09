@@ -6,7 +6,7 @@ using UnityEngine;
 //Version 0.1
 //-speed and range randomaly done with movementBounds
 //-spawn location of enemy is randomaly done by spawnBounds
-//Using Mathf pingpong fuction to transform the location each update
+//-Using Mathf pingpong fuction to transform the location each update
 
 public class EnemyMovement : MonoBehaviour
 {
