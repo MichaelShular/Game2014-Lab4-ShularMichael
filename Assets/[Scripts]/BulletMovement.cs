@@ -19,7 +19,6 @@ public class BulletMovement : MonoBehaviour
     {
         bulletManager = GameObject.FindObjectOfType<BulletManager>();
     }
-
     private void FixedUpdate()
     {
         //bullet movemenmt

@@ -7,6 +7,7 @@ using UnityEngine;
 //-function at start to create bullets
 //-function to get bullets from queue (destory)
 //-function to remove bullets from queue (spawn)
+//-fuction to add more bullets if there arent enoungh
 
 [System.Serializable]
 public class BulletManager : MonoBehaviour
@@ -39,6 +40,11 @@ public class BulletManager : MonoBehaviour
     //removing from queue setting bullets to active and sending then to spawn location
     public GameObject GetBullet(Vector2 pos)
     {
+        //check to see if bullets need to be added
+        if (bulletPool.Count == 0)
+        {
+            AddingBulletToPool();
+        }
         var temp_bullet = bulletPool.Dequeue();
         temp_bullet.transform.position = pos;
         temp_bullet.SetActive(true);
@@ -50,5 +56,15 @@ public class BulletManager : MonoBehaviour
     {
         bullet.SetActive(false);
         bulletPool.Enqueue(bullet);
+    }
+
+    //added one more bullet to pool if not enough bullets are in the pool
+    private void AddingBulletToPool()
+    {
+        ++amountOfBullets;
+        var temp_bullet = Instantiate(bullet);
+        temp_bullet.SetActive(false);
+        temp_bullet.transform.parent = transform;
+        bulletPool.Enqueue(temp_bullet);
     }
 }
