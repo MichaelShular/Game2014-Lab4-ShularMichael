@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: GeorgeBrown
-  productName: GAME2014-F2021-Lab3b_ShularMichael
+  productName: GAME2014-F2021-Lab4b_ShularMichael
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -155,7 +155,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.GeorgeBrown.GAME2014F2021Lab3b_ShularMichael
     Lumin: com.DefaultCompany.com.unity.template.mobile2D
-    Standalone: com.DefaultCompany.com.unity.template.mobile2D
+    Standalone: com.GeorgeBrown.GAME2014-F2021-Lab4bShularMichael
     iPhone: com.DefaultCompany.com.unity.template.mobile2D
     tvOS: com.DefaultCompany.com.unity.template.mobile2D
   buildNumber:

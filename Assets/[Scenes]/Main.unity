@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 450532131}
   - component: {fileID: 450532130}
   - component: {fileID: 450532134}
+  - component: {fileID: 450532135}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -274,6 +275,20 @@ MonoBehaviour:
   bounds:
     min: -1.9
     max: 1.9
+--- !u!114 &450532135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450532129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ea88df837ecbc4481d3ec09d2ed5a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpawn: {fileID: 2010204291}
+  framedelay: 5
 --- !u!1 &506318056
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,8 +461,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1026495260}
   - component: {fileID: 1026495259}
-  - component: {fileID: 1026495261}
   - component: {fileID: 1026495262}
+  - component: {fileID: 1026495261}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -505,7 +520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c3216f5a96d724dac4b7656eb6e7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfBullets: 0
+  enemyAmountOfBullets: 0
+  playerAmountOfBullets: 0
 --- !u!114 &1026495262
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -118,3 +118,4 @@ MonoBehaviour:
     min: -5.5
     max: 5.5
   direction: 0
+  type: 1

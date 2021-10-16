@@ -16,6 +16,7 @@ public class BulletMovement : MonoBehaviour
     private BulletManager bulletManager;
     private Vector3 velocity;
     public BulletDirection direction;
+    public BulletType type;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,13 +43,13 @@ public class BulletMovement : MonoBehaviour
         //move bullet back into queue if true
         if(transform.position.y < bulletBounds.min)
         {
-            bulletManager.destoryBullet(this.gameObject);
+            bulletManager.destoryBullet(this.gameObject, type);
         }
 
         //move bullet back into queue if true
         if (transform.position.y > bulletBounds.max)
         {
-            bulletManager.destoryBullet(this.gameObject);
+            bulletManager.destoryBullet(this.gameObject, type);
         }
     }
 }

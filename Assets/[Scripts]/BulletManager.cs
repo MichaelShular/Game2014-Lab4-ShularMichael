@@ -12,14 +12,17 @@ using UnityEngine;
 [System.Serializable]
 public class BulletManager : MonoBehaviour
 {
-    public Queue<GameObject> bulletPool;
-    [SerializeField] private int amountOfBullets;
+    public Queue<GameObject> enemyBulletPool;
+    public Queue<GameObject> playerBulletPool;
+    [SerializeField] private int enemyAmountOfBullets;
+    [SerializeField] private int playerAmountOfBullets;
     private BulletFactory factory;
 
     // Start is called before the first frame update
     void Start()
     {
-        bulletPool = new Queue<GameObject>();
+        enemyBulletPool = new Queue<GameObject>();
+        playerBulletPool = new Queue<GameObject>();
         factory = GetComponent<BulletFactory>();
         BuildBulletPool();
     }
@@ -27,38 +30,80 @@ public class BulletManager : MonoBehaviour
     //creating game object bullets but deactivating them and adding them to queue
     private void BuildBulletPool()
     {
-        for (int i = 0; i < amountOfBullets; i++)
+        for (int i = 0; i < enemyAmountOfBullets; i++)
         {
             AddingBulletToPool();
         }
     }
 
     //removing from queue setting bullets to active and sending then to spawn location
-    public GameObject GetBullet(Vector2 pos)
+    public GameObject GetBullet(Vector2 pos, BulletType type = BulletType.ENEMY)
     {
-        //check to see if bullets need to be added
-        if (bulletPool.Count < 1)
+        GameObject temp_bullet = null;
+        switch (type)
         {
-            AddingBulletToPool();
-            ++amountOfBullets;
+            case BulletType.ENEMY:
+                //check to see if bullets need to be added
+                if (enemyBulletPool.Count < 1)
+                {
+                    AddingBulletToPool(BulletType.ENEMY);
+                }
+                temp_bullet = enemyBulletPool.Dequeue();
+                temp_bullet.transform.position = pos;
+                temp_bullet.SetActive(true);
+                break;
+            case BulletType.PLAYER:
+                //check to see if bullets need to be added
+                if (playerBulletPool.Count < 1)
+                {
+                    AddingBulletToPool(BulletType.PLAYER);
+
+                }
+                temp_bullet = playerBulletPool.Dequeue();
+                temp_bullet.transform.position = pos;
+                temp_bullet.SetActive(true);
+                break;
+            default:
+                break;
         }
-        var temp_bullet = bulletPool.Dequeue();
-        temp_bullet.transform.position = pos;
-        temp_bullet.SetActive(true);
-        return temp_bullet;
+       return temp_bullet;
     }
 
     //deactivating bullets and adding them back to queue
-    public void destoryBullet(GameObject bullet)
+    public void destoryBullet(GameObject bullet, BulletType type = BulletType.ENEMY)
     {
-        bullet.SetActive(false);
-        bulletPool.Enqueue(bullet);
+        switch (type)
+        {
+            case BulletType.ENEMY:
+                bullet.SetActive(false);
+                enemyBulletPool.Enqueue(bullet);
+                break;
+            case BulletType.PLAYER:
+                bullet.SetActive(false);
+                playerBulletPool.Enqueue(bullet);
+                break;
+            default:
+                break;
+        }
+       
     }
 
     //added one more bullet to pool if not enough bullets are in the pool
-    private void AddingBulletToPool()
+    private void AddingBulletToPool(BulletType type = BulletType.ENEMY)
     {
-        var temp_bullet = factory.createBullet();
-        bulletPool.Enqueue(temp_bullet);
+        var temp_bullet = factory.createBullet(type);
+        switch (type)
+        {
+            case BulletType.ENEMY:
+                enemyBulletPool.Enqueue(temp_bullet);
+                ++enemyAmountOfBullets;
+                break;
+            case BulletType.PLAYER:
+                playerBulletPool.Enqueue(temp_bullet);
+                ++playerAmountOfBullets;
+                break;
+            default:
+                break;
+        }
     }
 }
