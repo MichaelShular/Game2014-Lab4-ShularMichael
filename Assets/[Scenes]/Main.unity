@@ -447,6 +447,7 @@ GameObject:
   - component: {fileID: 1026495260}
   - component: {fileID: 1026495259}
   - component: {fileID: 1026495261}
+  - component: {fileID: 1026495262}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -504,8 +505,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c3216f5a96d724dac4b7656eb6e7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfBullets: 5
-  bullet: {fileID: 8076318282764343415, guid: 3907bc2eeceaef74d919979ca6c2647d, type: 3}
+  amountOfBullets: 0
+--- !u!114 &1026495262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026495258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8749606650691c0469cd091df85cde9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBullet: {fileID: 8076318282764343415, guid: 3907bc2eeceaef74d919979ca6c2647d, type: 3}
+  playerBullet: {fileID: 8076318282764343415, guid: a5262783a2fa0064684500c772c02f78, type: 3}
 --- !u!1 &2010204290
 GameObject:
   m_ObjectHideFlags: 0

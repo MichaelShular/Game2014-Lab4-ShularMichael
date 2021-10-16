@@ -14,13 +14,13 @@ public class BulletManager : MonoBehaviour
 {
     public Queue<GameObject> bulletPool;
     [SerializeField] private int amountOfBullets;
-    [SerializeField] private GameObject bullet;
+    private BulletFactory factory;
 
     // Start is called before the first frame update
     void Start()
     {
         bulletPool = new Queue<GameObject>();
-
+        factory = GetComponent<BulletFactory>();
         BuildBulletPool();
     }
 
@@ -29,21 +29,18 @@ public class BulletManager : MonoBehaviour
     {
         for (int i = 0; i < amountOfBullets; i++)
         {
-            var temp_bullet = Instantiate(bullet);
-            temp_bullet.SetActive(false);
-            temp_bullet.transform.parent = transform;
-            bulletPool.Enqueue(temp_bullet);
+            AddingBulletToPool();
         }
-
     }
 
     //removing from queue setting bullets to active and sending then to spawn location
     public GameObject GetBullet(Vector2 pos)
     {
         //check to see if bullets need to be added
-        if (bulletPool.Count == 0)
+        if (bulletPool.Count < 1)
         {
             AddingBulletToPool();
+            ++amountOfBullets;
         }
         var temp_bullet = bulletPool.Dequeue();
         temp_bullet.transform.position = pos;
@@ -61,10 +58,7 @@ public class BulletManager : MonoBehaviour
     //added one more bullet to pool if not enough bullets are in the pool
     private void AddingBulletToPool()
     {
-        ++amountOfBullets;
-        var temp_bullet = Instantiate(bullet);
-        temp_bullet.SetActive(false);
-        temp_bullet.transform.parent = transform;
+        var temp_bullet = factory.createBullet();
         bulletPool.Enqueue(temp_bullet);
     }
 }
